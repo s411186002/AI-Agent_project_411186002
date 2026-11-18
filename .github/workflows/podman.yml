@@ -1,0 +1,26 @@
+name: Podman verification
+on: [push, pull_request, workflow_dispatch]
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build and verify
+        run: |
+          if ! command -v podman; then
+            sudo apt-get update
+            sudo apt-get install -y podman
+          fi
+          podman build -t coursepilot:hw2 .
+          podman run --rm --network none --entrypoint python coursepilot:hw2 -m unittest discover -s tests -v
+          mkdir -p /tmp/coursepilot-evidence
+          podman run --rm --network none coursepilot:hw2 plan --case success > /tmp/coursepilot-evidence/success.json
+          podman run --rm --network none coursepilot:hw2 plan --case unknown > /tmp/coursepilot-evidence/unknown.json
+          podman run --rm --network none coursepilot:hw2 plan --case short > /tmp/coursepilot-evidence/short.json
+          python3 -c 'import json,pathlib; p=pathlib.Path("/tmp/coursepilot-evidence"); assert all(json.loads((p/f"{n}.json").read_text())["status"] == s for n,s in (("success","ok"),("unknown","needs_deadline"),("short","insufficient")))'
+      - uses: actions/upload-artifact@v4
+        with:
+          name: podman-traces
+          path: /tmp/coursepilot-evidence
