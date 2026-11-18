@@ -4,7 +4,7 @@ CoursePilot 將已確認的課程任務與可用時段轉成可檢查的學習�
 
 ## 1. 用 Podman 執行
 
-系統需求：Podman；首次建置需能拉取 Python 3.12 slim 映像。Windows 或 macOS 若尚未建立 Podman VM，執行 `podman machine init --now`；已有但停止的 VM 執行 `podman machine start`。Linux 可直接使用 Podman。見 [Podman 官方說明](https://docs.podman.io/en/stable/markdown/podman-machine-init.1.html)。
+系統需求：Podman；首次建置需能拉取 Python 3.12 slim 映像。Windows 或 macOS 若尚未建立 Podman VM，執行 `podman machine init --now`；已有但停止的 VM 執行 `podman machine start`。Linux 可直接使用 Podman。見 [Podman 官方說明]。
 
 在含有 Containerfile 的目錄執行：
 
@@ -73,7 +73,7 @@ flowchart TD
 
 ## 實際完整追蹤
 
-對應 [原始 JSON](../evidence/success.json)；由 CLI 實際執行產生。
+對應 [原始 JSON]；由 CLI 實際執行產生。
 
 | 步驟 | 事件 | 觀察到的內容 |
 |---|---|---|
@@ -87,9 +87,9 @@ flowchart TD
 
 | 情境 | 原因 | 處理及實際結果 |
 |---|---|---|
-| [期限不明](../evidence/unknown.json) | 公告只有「下週五」，沒有參考日期 | 讀取後停止排程，回傳 `needs_deadline`；請確認 DB01 日期後重跑 |
-| [期限前容量不足](../evidence/short.json) | 雖有 90 分鐘可用時間，但期限前只有 30 分鐘 | 回傳 `insufficient`，僅列合法的 30 分鐘區塊，DB01 尚缺 60 分鐘；建議增加期限前的可用時段 |
+| [期限不明]| 公告只有「下週五」，沒有參考日期 | 讀取後停止排程，回傳 `needs_deadline`；請確認 DB01 日期後重跑 |
+| [期限前容量不足] | 雖有 90 分鐘可用時間，但期限前只有 30 分鐘 | 回傳 `insufficient`，僅列合法的 30 分鐘區塊，DB01 尚缺 60 分鐘；建議增加期限前的可用時段 |
 | 候選計畫錯誤 | 測試注入未知任務的區塊 | Agent 回傳 `invalid_schedule`，不提供錯誤候選；驗證器也另測重疊與超期 |
-| [重新規劃](../evidence/changed.json)（對照成功） | DB01 已完成且時段改成週四 | `ok`；只排 AI01，使用新時段 |
+| [重新規劃]（對照成功） | DB01 已完成且時段改成週四 | `ok`；只排 AI01，使用新時段 |
 
-[本機測試紀錄](../evidence/tests.txt)：10 項通過，涵蓋成功追蹤、重新規劃、資料錯誤、未確認期限、容量不足與驗證分支。容器驗證尚待具備 Podman 的環境或 GitHub Actions 執行。
+[本機測試紀錄]：10 項通過，涵蓋成功追蹤、重新規劃、資料錯誤、未確認期限、容量不足與驗證分支。容器驗證尚待具備 Podman 的環境或 GitHub Actions 執行。
