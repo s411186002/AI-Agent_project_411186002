@@ -1,0 +1,15 @@
+test_agent_rejects_invalid_candidate_instead_of_showing_it (test_agent.AgentTests.test_agent_rejects_invalid_candidate_instead_of_showing_it) ... ok
+test_bad_json_or_schema_is_rejected (test_agent.AgentTests.test_bad_json_or_schema_is_rejected) ... ok
+test_insufficient_reports_only_capacity_before_deadline (test_agent.AgentTests.test_insufficient_reports_only_capacity_before_deadline) ... ok
+test_list_preserves_sources_and_does_not_schedule (test_agent.AgentTests.test_list_preserves_sources_and_does_not_schedule) ... ok
+test_missing_file_records_observation (test_agent.AgentTests.test_missing_file_records_observation) ... ok
+test_no_windows_and_no_pending_are_distinct (test_agent.AgentTests.test_no_windows_and_no_pending_are_distinct) ... ok
+test_plan_and_full_trace (test_agent.AgentTests.test_plan_and_full_trace) ... ok
+test_replan_uses_new_window_and_skips_completed_task (test_agent.AgentTests.test_replan_uses_new_window_and_skips_completed_task) ... ok
+test_unknown_due_stops_before_scheduler (test_agent.AgentTests.test_unknown_due_stops_before_scheduler) ... ok
+test_validator_rejects_overlap_and_late_block (test_agent.AgentTests.test_validator_rejects_overlap_and_late_block) ... ok
+
+----------------------------------------------------------------------
+Ran 10 tests in 0.086s
+
+OK
